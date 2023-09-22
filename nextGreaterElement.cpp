@@ -20,6 +20,25 @@ vector<int> nge (vector<int> vec){
     }
     return ans;
 }
+// sort code
+vector<int> nge2 (vector<int>vec){
+    vector<int> ans (vec.size(),-1);
+    stack<int> st;
+    st.push (0);
+    for (int i=1;i<vec.size();i++){
+        while (!st.empty()&&vec[i]>vec[st.top()]){
+         ans[st.top()]= vec[i];
+         st.pop();
+        }
+        st.push(i);
+    }
+    while (!st.empty()){
+        ans[st.top()]=-1;
+        st.pop();
+    }
+    return ans;
+}
+
 int main (){
     vector<int> vec;
     cout<<"enter the size of vector : ";
