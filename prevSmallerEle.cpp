@@ -26,6 +26,26 @@ vector<int> nse (vector<int> vec){
     reverse (ans);
     return ans;
 }
+// optimize code 
+vector<int> nse2 (vector<int>vec){
+    reverse(vec);
+    vector<int> ans (vec.size(),-1);
+    stack<int> st;
+    st.push (0);
+    for (int i=1;i<vec.size();i++){
+        while (!st.empty()&&vec[i]<vec[st.top()]){
+         ans[st.top()]= vec[i];
+         st.pop();
+        }
+        st.push(i);
+    }
+    while (!st.empty()){
+        ans[st.top()]=-1;
+        st.pop();
+    }
+    reverse(ans);
+    return ans;
+}
 int main (){
     vector<int> vec;
     cout<<"enter the size of vector : ";
